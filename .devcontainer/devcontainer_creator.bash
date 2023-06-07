@@ -25,6 +25,8 @@ read python_version
 if [ -z "$python_version" ]; then
     python_version="3.10.11"
 fi
+next_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2+1}')
+current_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2}')
 
 # 4. What is the cuda version? (11 is default) (only ask if gpu is true)
 if [ "$gpu" = "y" ]; then
@@ -51,7 +53,7 @@ if [ "$gpu" = "y" ]; then
 echo "{
     \"name\": \"${workspace_name}\",
     \"build\": {
-        \"dockerfile\": \"Dockerfile\",
+        \"dockerfile\": \"DockerfileGPU\",
         \"args\": {
             \"PYTHON_VERSION\": \"${python_version}\",
             \"CUDA\":\"${cuda_version}\",
@@ -122,10 +124,13 @@ echo "{
         \"--gpus\",
         \"all\"
     ],
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install\",
-
-}
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install\"
 }" > .devcontainer/devcontainer.json
+
+# change every mention of 3.10 to current_python_version in the dockerfileGPU
+sed -i "s/3.10/${current_python_version}/g" .devcontainer/DockerfileGPU
+
+
 # else
 else
 echo "{
@@ -196,7 +201,7 @@ echo "{
         \"azure-cli\": \"latest\",
         \"github-cli\": \"latest\"
     },
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install\",
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install\"
 
 }" > .devcontainer/devcontainer.json
 fi
@@ -206,6 +211,4 @@ sed -i "15s/.*/name = \"${workspace_name}\"/" pyproject.toml
 # create a next_pythen version variabele that is made of the first item of the python version than a dot and the second item of the python version +1 (split on dots)
 
 # 5. change line 23 inside the pyproject.toml file to the python version
-next_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2+1}')
-current_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2}')
 sed -i "23s/.*/python = \">=${current_python_version},<${next_python_version}\"/" pyproject.toml

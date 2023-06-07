@@ -1,6 +1,7 @@
 
 
 # CUDA/NVIDIA
+ARG PYTHON_VERSION=3.10
 ARG UBUNTU_VERSION=20.04
 ARG CUDA=11.6.0
 ARG CUDNN=cudnn8
@@ -8,7 +9,7 @@ ARG CUDNN=cudnn8
 
 # Base Image
 FROM nvidia/cuda:${CUDA}-${CUDNN}-devel-ubuntu${UBUNTU_VERSION}
-FROM nvidia/cuda:${CUDA}-base-ubuntu${UBUNTU_VERSION}
+# FROM nvidia/cuda:${CUDA}-base-ubuntu${UBUNTU_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -20,11 +21,12 @@ RUN add-apt-repository ppa:deadsnakes/ppa -y
 # uninstall existing python version
 RUN apt-get update && apt-get remove -y python3.8 && apt-get autoremove -y
 # get all installs
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.10 \
     python3-pip \
     python3.10-distutils \
-    python3-apt \
+    # python3-apt \
     curl \
     sudo \
     zsh \
@@ -66,11 +68,7 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DEFAULT_TIMEOUT=100
 
 # Install poetry
-RUN pip install poetry
+RUN pip3 install poetry
 # fix for dependency issues
 RUN pip install --upgrade requests
 # # Install packages
-
-WORKDIR /workspaces/${WORKSPACE}/
-
-RUN poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --no-interaction --no-ansi
