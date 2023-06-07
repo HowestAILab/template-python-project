@@ -1,0 +1,76 @@
+
+
+# CUDA/NVIDIA
+ARG UBUNTU_VERSION=20.04
+ARG CUDA=11.6.0
+ARG CUDNN=cudnn8
+#https://hub.docker.com/r/nvidia/cuda/tags
+
+# Base Image
+FROM nvidia/cuda:${CUDA}-${CUDNN}-devel-ubuntu${UBUNTU_VERSION}
+FROM nvidia/cuda:${CUDA}-base-ubuntu${UBUNTU_VERSION}
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /app
+# add python
+RUN apt update
+RUN apt install -y software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa -y
+# uninstall existing python version
+RUN apt-get update && apt-get remove -y python3.8 && apt-get autoremove -y
+# get all installs
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.10 \
+    python3-pip \
+    python3.10-distutils \
+    python3-apt \
+    curl \
+    sudo \
+    zsh \
+    git \
+    nano \
+    software-properties-common
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# set python3.10 as default
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+#run curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python3.10 get-pip.py
+# RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+
+# set zsh config
+ENV ROOT /root
+
+# persist bash
+RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
+    && echo "$SNIPPET" >> "/root/.bashrc"
+
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+RUN git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z
+
+COPY .zshrc $ROOT/.zshrc
+ENV SHELL /bin/zsh
+
+# Poetry setup
+ENV PYTHONFAULTHANDLER=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONHASHSEED=random \
+    PIP_NO_CACHE_DIR=off \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=100
+
+# Install poetry
+RUN pip install poetry
+# fix for dependency issues
+RUN pip install --upgrade requests
+# # Install packages
+
+WORKDIR /workspaces/${WORKSPACE}/
+
+RUN poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --no-interaction --no-ansi

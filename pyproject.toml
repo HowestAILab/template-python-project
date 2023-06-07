@@ -1,0 +1,100 @@
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 88
+known_third_party = "kedro"
+
+[tool.coverage.report]
+fail_under = 0
+show_missing = true
+exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
+
+[tool.poetry]
+name = "template-python-project"
+version = "0.1.0"
+authors = ["Jens Krijgsman <jens@krygsman.be>"]
+description = "DESCRIPTION"
+readme = "README.md"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+tqdm = "^4.65.0"
+numpy = "1.23.5"
+
+[tool.poetry.group.gpu]
+optional = true
+[tool.poetry.group.cleaning]
+optional = true
+[tool.poetry.group.utils]
+optional = true
+
+[tool.poetry.group.gpu.dependencies]
+polars = "^0.16.13"
+httpx = "^0.23.3"
+scikit-learn = "^1.2.2"
+tensorflow = "^2.12.0"
+wandb = "^0.14.2"
+
+[tool.poetry.group.cleaning.dependencies]
+black = {extras = ["jupyter"], version = "^22.3.0"}
+commitizen = "^2.20.0"
+poethepoet = "^0.18.1"
+pre-commit = "^2.15.0"
+flake9 = "^3.8.3"
+isort = "^5.12.0"
+pytest-cov = "^2.11.1"
+bandit = "^1.7.0"
+safety = "^1.10.3"
+vulture = "^2.3"
+
+[tool.poetry.group.utils.dependencies]
+attr = "^0.3.1"
+types-attrs = "^19.1.0"
+pandas = "^1.3.3"
+rich = "^13.3.2"
+PyYAML = "^5.4.1"
+python-dotenv = "^0.19.0"
+ipykernel = "^6.4.1"
+jupyter = "^1.0.0"
+snakeviz = "^2.1.0"
+Cython = "^0.29.24"
+
+[tool.poetry.scripts]
+poe = "poethepoet:main"
+
+[tool.poe.tasks]
+# lint and formatting
+format = { cmd = "black .", help = "Run black formatter on the code base, changes on the fly." }
+style = { cmd = "black --check .", help = "Run black formatter on the code base, only checks." }
+lint = { cmd = "flake8 .", help = "Run flake9 linter on the code base." }
+isort = { cmd = "isort .", help = "Run isort checker on the code base." }
+prep = { cmd = "pre-commit run --all-files", help = "Run pre commit on all files" }
+com = { cmd = "cz commit", help = "add files and commit" }
+cr = { cmd = "cz commit --retry", help = "add files and commit" }
+git = { cmd = "git add .", help = "add files and commit" }
+viz = { cmd = "kedro viz --host 0.0.0.0 --no-browser --autoreload", help = "run kedro viz with prespecified parameters" }
+
+
+clean = ["format", "style", "isort"]
+commit = ["clean","git","com"]
+cretry = ["git","cr"]
+
+
+
+[tool.poe.env]
+TZ = "UTC"
+
+[tool.flake8]
+ignore = "F722,W503,E501,E741,W605,E203,C901,F541,E133"
+max-line-length = 88
+max-complexity = 25
+
+[tool.black]
+line-length = 88
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
