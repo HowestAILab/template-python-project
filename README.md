@@ -1,9 +1,10 @@
 # Python project template
 
-| Action         | Tag                                                                                                                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Pre-commit** | [![pre-commit](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml) |
-| **Version**    | ![Version](https://github.com/sizingservers/template-python-project/version.svg)                                                                                                                                  |
+| Action           | Tag                                                                                                                                                                                                               |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Pre-commit**   | [![pre-commit](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml) |
+| **Version**      | ![Version](https://github.com/sizingservers/template-python-project/version.svg)                                                                                                                                  |
+| **Last changed** | ![](https://byob.yarr.is/RubbaBoy/Example/time)                                                                                                                                                                   |
 
 - [Python project template](#python-project-template)
   - [How to use](#how-to-use)
