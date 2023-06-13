@@ -15,19 +15,20 @@ jobs:
           version=$(grep -E '^version' pyproject.toml | tail -n 1 | cut -d '"' -f2)
           echo "version=$version" >> $GITHUB_ENV
 
-      - run: mkdir -p badges
+      - run: mkdir -p build
       - name: Generate Badges
         uses: jaywcjlove/generated-badges@main
         with:
           label: version
           status: ${{ env.version }}
-          output: badges/version.svg
           color: cyan
+          output: build/version.svg
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./badges
+          publish_dir: ./build
       # - name: Version badge
       #   uses: RubbaBoy/BYOB@v1.3.0
       #   with:
