@@ -3,8 +3,8 @@
 | Action           | Tag                                                                                                                                                                                                               |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Pre-commit**   | [![Pre-commit](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml) |
-| **Version**      | [![Version](https://github.com/sizingservers/template-python-project/version.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml)                                       |
-| **Last changed** | [![Last-changed](https://byob.yarr.is/sizingservers/template-python-project/time)](https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml)                                       |
+| **Version**      | [![Version](https://github.com/sizingservers/template-python-project/blob/gh-pages/version.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml)                         |
+| **Last changed** | [![Last-changed](https://github.com/sizingservers/template-python-project/blob/gh-pages/date.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml)                       |
 
 - [Python project template](#python-project-template)
   - [How to use](#how-to-use)
