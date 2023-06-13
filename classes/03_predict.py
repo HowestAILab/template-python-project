@@ -1,7 +1,7 @@
 import argparse
 
 import attr
-import dotenv
+from dotenv import load_dotenv
 
 
 @attr.s
@@ -19,7 +19,7 @@ class Predict:
         """""
         This function is called automatically when the class is instantiated
         """ ""
-        self.env = dotenv.dotenv_values(self.env_path)
+        self.env = load_dotenv(self.env_path)
 
     def main(self):
         pass
