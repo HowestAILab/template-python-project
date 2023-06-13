@@ -85,12 +85,12 @@ repos:
       - id: pycln
         args: [--config=pyproject.toml]
   #For checking on prints
-  # - repo: local
-  #   hooks:
-  #     - id: print_statement
-  #       name: print statement
-  #       types: [python]
-  #       exclude: "^(migrations/|scripts/)"
-  #       args: ["--multiline"]
-  #       entry: 'print\('
-  #       language: pygrep
+  - repo: local
+    hooks:
+      - id: print_statement
+        name: print statement
+        types: [python]
+        exclude: "^(migrations/|scripts/)"
+        args: ["--multiline"]
+        entry: 'print\('
+        language: pygrep
