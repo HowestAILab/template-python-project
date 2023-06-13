@@ -1,0 +1,20 @@
+<svg width="219.9" height="20" viewBox="0 0 2199 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="date: Tue Jun 13 14:32:55 UTC 2023">
+  <title>date: Tue Jun 13 14:32:55 UTC 2023</title>
+  <linearGradient id="a" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#EEE"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="m"><rect width="2199" height="200" rx="30" fill="#FFF"/></mask>
+  <g mask="url(#m)">
+    <rect width="344" height="200" fill="#555"/>
+    <rect width="1855" height="200" fill="#DB1" x="344"/>
+    <rect width="2199" height="200" fill="url(#a)"/>
+  </g>
+  <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
+    <text x="60" y="148" textLength="244" fill="#000" opacity="0.25">date</text>
+    <text x="50" y="138" textLength="244">date</text>
+    <text x="399" y="148" textLength="1755" fill="#000" opacity="0.25">Tue Jun 13 14:32:55 UTC 2023</text>
+    <text x="389" y="138" textLength="1755">Tue Jun 13 14:32:55 UTC 2023</text>
+  </g>
+  
+</svg>
