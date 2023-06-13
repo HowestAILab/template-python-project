@@ -1,20 +1,20 @@
-# Python project template
+<h2 align="center">Python project template</h2>
 
-| Action           | Tag                                                                                                                                                                                                               |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Pre-commit**   | [![Pre-commit](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml) |
-| **Version**      | [![Version](https://github.com/sizingservers/template-python-project/blob/gh-pages/version.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml)                         |
-| **Last changed** | [![Last-changed](https://github.com/sizingservers/template-python-project/blob/gh-pages/date.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml)                       |
+<p align="center">
+<a href="https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml"><img alt="Actions Status" src="https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml/badge.svg"></a>
+<a href="https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/sizingservers/template-python-project/blob/gh-pages/version.svg"></a>
+<a href="https://github.com/sizingservers/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/sizingservers/template-python-project/blob/gh-pages/date.svg"></a>
 
-- [Python project template](#python-project-template)
-  - [How to use](#how-to-use)
-  - [Installation](#installation)
-    - [Poetry](#poetry)
-    - [Pre-commit](#pre-commit)
-    - [Usability](#usability)
-    - [Devcontainer](#devcontainer)
-  - [Possible errors](#possible-errors)
-    - [Docker issues](#docker-issues)
+</p>
+
+- [How to use](#how-to-use)
+- [Installation](#installation)
+  - [Poetry](#poetry)
+  - [Pre-commit](#pre-commit)
+  - [Usability](#usability)
+  - [Devcontainer](#devcontainer)
+- [Possible errors](#possible-errors)
+  - [Docker issues](#docker-issues)
 
 ## How to use
 
