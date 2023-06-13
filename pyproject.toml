@@ -103,3 +103,6 @@ line-length = 88
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[template.version]
+version = "0.1.0"

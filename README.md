@@ -1,9 +1,26 @@
 # Python project template
 
+| Action         | Tag                                                                                                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Pre-commit** | [![pre-commit](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/sizingservers/template-python-project/actions/workflows/pre-commit.yaml) |
+| **Version**    | ![Version](https://github.com/sizingservers/template-python-project/version.svg)                                                                                                                                  |
+
+- [Python project template](#python-project-template)
+  - [How to use](#how-to-use)
+  - [Installation](#installation)
+    - [Poetry](#poetry)
+    - [Pre-commit](#pre-commit)
+    - [Usability](#usability)
+    - [Devcontainer](#devcontainer)
+  - [Possible errors](#possible-errors)
+    - [Docker issues](#docker-issues)
+
 ## How to use
+
 Some key things to know when developing in the devcontainer
 
 You don't use git as normal, there is a whole pipeline in place to have a correct way of formatting your code. Use this in the terminal!
+
 ```bash
 pc
 ```
@@ -27,10 +44,9 @@ gp
 
 This will push your code to the repo.
 
-
 ## Installation
 
-When starting the repo everything should be ready to use.
+When starting the repo everything should be ready to use. (do not forget to install the devcontainer [Devcontainer readme](.devcontainer/Readme.md))
 
 Here some info about the pre installed tools
 
@@ -50,7 +66,7 @@ There are some shortcuts when in the poetry virtual environment `poetry shell` t
 poe
 ```
 
-Some other shortcuts in the terminal config file
+Some other shortcuts that are already in the terminal config file
 
 ```bash
 pos="poetry shell"
@@ -77,34 +93,6 @@ Next when you are inside Vs-code inside the repo press `CTRL + SHIFT + P` and se
 
 this will build the container and try to open them.
 
-## Projectfiles
-
-```
-template-python-project
-├─ .devcontainer
-│  ├─ .zshrc
-│  ├─ Dockerfile
-│  ├─ DockerfileGPU
-│  ├─ Readme.md
-│  └─ devcontainer.json
-├─ .git
-│  └─ ...
-├─ .vscode
-│  └─ settings.json
-├─ classes
-├─ data
-├─ notebooks
-│  ├─ pyproject.toml
-├─ utils
-├─ env.example
-├─ .gitignore
-├─ .pre-commit-config.yaml
-├─ pyproject.toml
-└─ README.md
-
-
-```
-
 ## Possible errors
 
 ### Docker issues
@@ -115,5 +103,5 @@ When you are working inside WSL2 and you get the following error
 
 There are 2 things you can try to fix it
 
-1. Install docker inside WSL2 (if you have not done this already)
-2. Start the docker daemon inside WSL=> `sudo dockerd`
+1.  Install docker inside WSL2 (if you have not done this already)
+2.  Start the docker daemon inside WSL=> `sudo dockerd`

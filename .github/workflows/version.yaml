@@ -1,0 +1,50 @@
+name: pre-commit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # read the toml file look for the version tag (start from the bottom and show only 1) save that as artifact (to use for status badge )
+      - run: |
+          version=$(grep -E '^version' pyproject.toml | tail -n 1 | cut -d '"' -f2)
+          echo "version=$version" >> $GITHUB_ENV
+          echo "::set-output name=version::$version"
+
+      - name: Generate Badges
+        uses: jaywcjlove/generated-badges@main
+        with:
+          label: version
+          status: ${{ env.version }}
+          output: build/version.svg
+          color: cyan
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+      # - name: Version badge
+      #   uses: RubbaBoy/BYOB@v1.3.0
+      #   with:
+      #     NAME: time
+      #     LABEL: 'Updated at'
+      #     STATUS: ${{ env.version }}
+      #     COLOR: 00EEFF
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # date badge
+      - id: date
+        run: echo "##[set-output name=data;]$(date)"
+      - name: Time badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          NAME: time
+          LABEL: "Updated at"
+          STATUS: ${{ steps.date.outputs.data }}
+          COLOR: F9C316
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
