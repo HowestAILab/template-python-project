@@ -4,6 +4,7 @@
 <a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/pre-commit.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/pre-commit.yaml/badge.svg"></a>
 <a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/version.svg"></a>
 <a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/date.svg"></a>
+<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/language.svg"></a>
 
 </p>
 

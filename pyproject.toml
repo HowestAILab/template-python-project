@@ -105,4 +105,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [template.version]
-version = "1.0.0"
+version = "1.0.1"

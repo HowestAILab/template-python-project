@@ -18,6 +18,9 @@ jobs:
       - run: |
           date=$(date)
           echo "date=$date" >> $GITHUB_ENV
+      #  set language
+      - run: |
+          echo "language=Python" >> $GITHUB_ENV
 
       - run: mkdir -p build
       - name: Generate Badges
@@ -31,10 +34,18 @@ jobs:
       - name: Generate date badge
         uses: jaywcjlove/generated-badges@main
         with:
-          label: date
+          label: last updated
           status: ${{ env.date }}
           color: yellow
           output: build/date.svg
+
+      - name: Generate language badge
+        uses: jaywcjlove/generated-badges@main
+        with:
+          label: language
+          status: ${{ env.language }}
+          color: green
+          output: build/language.svg
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
