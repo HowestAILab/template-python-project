@@ -1,20 +1,20 @@
-<svg width="266.8" height="20" viewBox="0 0 2668 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="last updated: Mon Jun 19 09:13:31 UTC 2023">
-  <title>last updated: Mon Jun 19 09:13:31 UTC 2023</title>
+<svg width="264.2" height="20" viewBox="0 0 2642 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="last updated: Tue Jun 20 12:46:35 UTC 2023">
+  <title>last updated: Tue Jun 20 12:46:35 UTC 2023</title>
   <linearGradient id="a" x2="0" y2="100%">
     <stop offset="0" stop-opacity=".1" stop-color="#EEE"/>
     <stop offset="1" stop-opacity=".1"/>
   </linearGradient>
-  <mask id="m"><rect width="2668" height="200" rx="30" fill="#FFF"/></mask>
+  <mask id="m"><rect width="2642" height="200" rx="30" fill="#FFF"/></mask>
   <g mask="url(#m)">
     <rect width="787" height="200" fill="#555"/>
-    <rect width="1881" height="200" fill="#DB1" x="787"/>
-    <rect width="2668" height="200" fill="url(#a)"/>
+    <rect width="1855" height="200" fill="#DB1" x="787"/>
+    <rect width="2642" height="200" fill="url(#a)"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="687" fill="#000" opacity="0.25">last updated</text>
     <text x="50" y="138" textLength="687">last updated</text>
-    <text x="842" y="148" textLength="1781" fill="#000" opacity="0.25">Mon Jun 19 09:13:31 UTC 2023</text>
-    <text x="832" y="138" textLength="1781">Mon Jun 19 09:13:31 UTC 2023</text>
+    <text x="842" y="148" textLength="1755" fill="#000" opacity="0.25">Tue Jun 20 12:46:35 UTC 2023</text>
+    <text x="832" y="138" textLength="1755">Tue Jun 20 12:46:35 UTC 2023</text>
   </g>
   
 </svg>
