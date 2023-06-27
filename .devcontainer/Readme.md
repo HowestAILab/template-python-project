@@ -26,3 +26,12 @@ use `nvidia-smi` to get the cuda version from the server/device working on, if i
 For the cudnn version you can look for a compatible version with your cuda installation at [Link](https://developer.nvidia.com/rdp/cudnn-archiv).
 
 If any problems occur create an issue on the repo.
+
+## Specific server configs
+
+| Server | Cuda   | cudnn8 |
+| ------ | ------ | ------ |
+| A5000  | 11.6.0 | cudnn8 |
+| Titan  | 11.4.0 | cudnn8 |
+
+> **Important!** Do not forget the .0 on the end of the cuda version. This is a reference to the [docker images of Nvidia](https://hub.docker.com/r/nvidia/cuda/tags)

@@ -99,11 +99,28 @@ this will build the container and try to open them.
 
 ### Docker issues
 
+#### WSL2 - docker not running
+
 When you are working inside WSL2 and you get the following error
 
 `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
 
 There are 2 things you can try to fix it
 
-1.  Install docker inside WSL2 (if you have not done this already)
-2.  Start the docker daemon inside WSL=> `sudo dockerd`
+1. Install docker inside WSL2 (if you have not done this already)
+2. Start the docker daemon inside WSL=> `sudo dockerd`
+
+#### Server - config file not found
+
+When you are working on the server and you don't have acces to the docker config located at the user folder
+
+```
+WARNING: Error loading config file: /home/user/.docker/config.json ....
+```
+
+This can be fixed by running the following commands (before rebuilding the devcontainer)
+
+```bash
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "/home/$USER/.docker" -R
+```
