@@ -31,8 +31,8 @@ optional = true
 
 [tool.poetry.group.gpu.dependencies]
 scikit-learn = "^1.2.2"
-tensorflow = "^2.10.0"
-tensorflow-gpu = {version = "^2.10.0", python = ">=3.7,<4.0"}
+tensorflow = "2.10.0"
+tensorflow-gpu = "2.10.0"
 wandb = "^0.14.2"
 
 [tool.poetry.group.cleaning.dependencies]
