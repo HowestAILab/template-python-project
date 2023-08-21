@@ -9,7 +9,6 @@
     "adpyke.codesnap",
     "analytic-signal.preview-mp4",
     "anseki.vscode-color",
-    "bungcip.better-toml",
     "cweijan.vscode-office",
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
@@ -66,5 +65,9 @@
     "github-cli": "latest"
   },
   "name": "template-python-project",
-  "postStartCommand": "poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install"
+  "postStartCommand": "poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install",
+  "runArgs": [
+    "--name",
+    "template-python-project_devcontainer"
+  ]
 }

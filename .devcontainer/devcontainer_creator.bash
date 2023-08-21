@@ -122,7 +122,9 @@ echo "{
     },
     \"runArgs\": [
         \"--gpus\",
-        \"all\"
+        \"all\",
+        \"--name\",
+        \"${workspace_name}_devcontainer\"
     ],
     \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install\"
 }" > .devcontainer/devcontainer.json
@@ -201,6 +203,10 @@ echo "{
         \"azure-cli\": \"latest\",
         \"github-cli\": \"latest\"
     },
+    \"runArgs\": [
+        \"--name\",
+        \"${workspace_name}_devcontainer\"
+    ],
     \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install\"
 
 }" > .devcontainer/devcontainer.json
