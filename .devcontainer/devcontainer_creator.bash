@@ -30,11 +30,11 @@ current_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2}')
 
 # 4. What is the cuda version? (11 is default) (only ask if gpu is true)
 if [ "$gpu" = "y" ]; then
-    echo "${bold}What is the cuda version? (11.6.0 default)${normal}"
+    echo "${bold}What is the cuda version? (11.6.2 default)${normal}"
     read cuda_version
 fi
 if [ -z "$cuda_version" ]; then
-    cuda_version="11.6.0"
+    cuda_version="11.6.2"
 fi
 # 4. What is the cuddn version? (10.1/10.2/11.0) (only ask if gpu is true)
 if [ "$gpu" = "y" ]; then

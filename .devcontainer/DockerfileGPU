@@ -3,7 +3,7 @@
 # CUDA/NVIDIA
 ARG PYTHON_VERSION=3.10
 ARG UBUNTU_VERSION=20.04
-ARG CUDA=11.6.0
+ARG CUDA=11.6.2
 ARG CUDNN=cudnn8
 #https://hub.docker.com/r/nvidia/cuda/tags
 
