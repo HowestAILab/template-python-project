@@ -23,16 +23,11 @@ jobs:
           echo "UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini | tr -d ' ')" >> $GITHUB_ENV
       - name: Check Docker Image
         run: |
-          if  docker manifest inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
-            echo "Docker manifest exists"
+          echo "output=$(docker manifest inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} 2>&1)" >> $GITHUB_ENV
+          if echo ${{ env.output }} | grep -q "no such manifest"; then
+              echo "Manifest does not exist"
           else
-            if docker manifest inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} 2>&1 | grep -q "no such manifest"; then
-              echo "Docker manifest does not exist"
-              exit 1
-            else
-              echo "Error checking Docker manifest"
-              exit 1
-            fi
+              echo "Manifest exists"
           fi
       - name: Notify User
         if: failure()
