@@ -3,6 +3,11 @@
 # 2. Do you USE/have gpu in machine? (y/n)
 # 3. What is the python version? (3.6/3.7/3.8)
 # 4. What is the cuda version? (10.1/10.2/11.0)
+default_python_version=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini)
+default_cuda=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini)
+default_cudnn=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini)
+default_gpu_available=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini)
+default_ubuntu_version=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)
 
 bold=$(tput bold)
 normal=$(tput sgr0)
@@ -12,38 +17,48 @@ echo "${bold}What is the name of the workspace/folder?${normal}"
 read workspace_name
 
 # 2. Do you USE/have gpu in machine? (y/n)
-echo "${bold}Do you USE/have gpu in machine? (y/n - default)${normal}"
+echo "${bold}Do you USE/have gpu in machine? (y/n - default is ${default_gpu_available})${normal}"
 read gpu
 
 if [ -z "$gpu" ]; then
-    gpu="n"
+    gpu="${default_gpu_available}"
 fi
 
 # 3. What is the python version? (3.6/3.7/3.8)
-echo "${bold}What is the python version? (default is 3.10.11)${normal}"
+echo "${bold}What is the python version? (default is ${default_python_version})${normal}"
 read python_version
 if [ -z "$python_version" ]; then
-    python_version="3.10.11"
+    python_version="${default_python_version}"
 fi
 next_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2+1}')
 current_python_version=$(echo ${python_version} | awk -F '.' '{print $1"."$2}')
 
 # 4. What is the cuda version? (11 is default) (only ask if gpu is true)
 if [ "$gpu" = "y" ]; then
-    echo "${bold}What is the cuda version? (11.6.2 default)${normal}"
+    echo "${bold}What is the cuda version? (${default_cuda} default)${normal}"
     read cuda_version
 fi
 if [ -z "$cuda_version" ]; then
-    cuda_version="11.6.2"
+    cuda_version="${default_cuda}"
 fi
 # 4. What is the cuddn version? (10.1/10.2/11.0) (only ask if gpu is true)
 if [ "$gpu" = "y" ]; then
-    echo "${bold}What is the cuddn version? (cudnn8 default)${normal}"
+    echo "${bold}What is the cuddn version? (${default_cudnn} default)${normal}"
     read cuddn_version
 fi
 if [ -z "$cuddn_version" ]; then
-    cuddn_version="cudnn8"
+    cuddn_version="${default_cudnn}"
 fi
+
+# what is ubuntu version
+if [ "$gpu" = "y" ]; then
+    echo "${bold}What is the ubuntu version? (${default_ubuntu_version} default)${normal}"
+    read ubuntu_version
+fi
+if [ -z "$ubuntu_version" ]; then
+    ubuntu_version="${default_ubuntu_version}"
+fi
+
 
 
 # 5. Create devcontainer.json and save it in .devcontainer folder
@@ -58,6 +73,7 @@ echo "{
             \"PYTHON_VERSION\": \"${python_version}\",
             \"CUDA\":\"${cuda_version}\",
             \"CUDNN\":\"${cuddn_version}\"
+            \"UBUNTU_VERSION\":\"${ubuntu_version}\"
         }
     },
     \"extensions\": [

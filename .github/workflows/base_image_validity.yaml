@@ -1,0 +1,40 @@
+name: Check Docker base Image
+
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Run every Sunday at midnight
+
+jobs:
+  check-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get config file from .devcontainer
+        uses: actions/checkout@v2
+        with:
+          path: .devcontainer
+      - name: Parse config file
+        run: |
+          echo "[DEFAULT]" > config.ini
+          cat .devcontainer/config.ini >> config.ini
+          python -m pip install configparser
+          python -c "from configparser import ConfigParser; config = ConfigParser(); config.read('.devcontainer/config.ini'); print(f'default_python_version={config.get('config', 'default_python_version')}'); print(f'CUDA={config.get('config', 'default_cuda')}'); print(f'CUDNN={config.get('config', 'default_cudnn')}'); print(f'UBUNTU_VERSION={config.get('config', 'default_ubuntu_version')}')" >> $GITHUB_ENV      - name: Check Docker Image
+      - name: Check Docker Image
+        run: |
+          if docker inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
+            echo "Docker image exists"
+          else
+            echo "Docker image does not exist"
+            exit 1 # add this line to make the step fail
+          fi
+      - name: Notify User
+        if: failure()
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Docker image does not exist',
+              body: 'The Docker image <image-name>:<image-tag> does not exist. Please check the build process and try again.'
+            })
