@@ -16,17 +16,11 @@ jobs:
           ls -la .devcontainer
       - name: Set environment variables
         run: |
-          export DEFAULT_PYTHON_VERSION=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini)
-          export CUDA=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini)
-          export CUDNN=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini)
-          export GPU_AVAILABLE=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini)
-          export UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)
-        env:
-          DEFAULT_PYTHON_VERSION: ${{ env.DEFAULT_PYTHON_VERSION }}
-          CUDA: ${{ env.CUDA }}
-          CUDNN: ${{ env.CUDNN }}
-          GPU_AVAILABLE: ${{ env.GPU_AVAILABLE }}
-          UBUNTU_VERSION: ${{ env.UBUNTU_VERSION }}
+          echo "DEFAULT_PYTHON_VERSION=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
+          echo "CUDA=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
+          echo "CUDNN=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
+          echo "GPU_AVAILABLE=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
+          echo "UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
       - name: Check Docker Image
         run: |
           if docker inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
