@@ -8,6 +8,12 @@ on:
 jobs:
   check-docker-image:
     runs-on: ubuntu-latest
+    env:
+      DEFAULT_PYTHON_VERSION: ""
+      CUDA: ""
+      CUDNN: ""
+      GPU_AVAILABLE: ""
+      UBUNTU_VERSION: ""
     steps:
       - name: get config file from .devcontainer
         uses: actions/checkout@v3
