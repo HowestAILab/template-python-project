@@ -23,7 +23,7 @@ jobs:
           echo "UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
       - name: Check Docker Image
         run: |
-          if docker inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
+          if  docker manifest inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
             echo "Docker image exists"
           else
             echo "Docker image does not exist"
