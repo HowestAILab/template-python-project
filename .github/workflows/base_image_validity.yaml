@@ -16,18 +16,23 @@ jobs:
           ls -la .devcontainer
       - name: Set environment variables
         run: |
-          echo "DEFAULT_PYTHON_VERSION=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
-          echo "CUDA=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
-          echo "CUDNN=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
-          echo "GPU_AVAILABLE=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
-          echo "UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)" >> $GITHUB_ENV
+          echo "DEFAULT_PYTHON_VERSION=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini | tr -d ' ')" >> $GITHUB_ENV
+          echo "CUDA=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini | tr -d ' ')" >> $GITHUB_ENV
+          echo "CUDNN=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini | tr -d ' ')" >> $GITHUB_ENV
+          echo "GPU_AVAILABLE=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini | tr -d ' ')" >> $GITHUB_ENV
+          echo "UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini | tr -d ' ')" >> $GITHUB_ENV
       - name: Check Docker Image
         run: |
           if  docker manifest inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
-            echo "Docker image exists"
+            echo "Docker manifest exists"
           else
-            echo "Docker image does not exist"
-            exit 1 # add this line to make the step fail
+            if docker manifest inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} 2>&1 | grep -q "no such manifest"; then
+              echo "Docker manifest does not exist"
+              exit 1
+            else
+              echo "Error checking Docker manifest"
+              exit 1
+            fi
           fi
       - name: Notify User
         if: failure()
