@@ -13,6 +13,7 @@ repos:
       - id: check-symlinks
       - id: end-of-file-fixer
       - id: pretty-format-json
+        exclude: .ipynb
         args:
           - --autofix
       - id: trailing-whitespace
@@ -25,29 +26,7 @@ repos:
         language: system
         entry: black
         types: [python]
-      # - id: flake8
-      #   exclude: .venv
-      #   args:
-      #     [
-      #       "--ignore",
-      #       "F722,W503,E501,E741,W605,E203,C901,F541,F711,W291,E302,E402,E133",
-      #       "--max-line-length",
-      #       "88",
-      #       "--max-complexity",
-      #       "25",
-      #       ".",
-      #     ]
-      #   name: flake8
-      #   language: system
-      #   entry: flake8
-      #   types: [python]
-      # - id: mypy
-      #   args: ["--ignore-missing-imports", "--follow-imports=skip", "."]
-      #   name: mypy
-      #   language: system
-      #   entry: mypy
-      #   types: [python]
-      #   exclude: ^docs/conf.py
+
   - repo: https://github.com/humitos/mirrors-autoflake.git
     rev: v1.1
     hooks:
@@ -80,7 +59,7 @@ repos:
         types: [python]
 
   - repo: https://github.com/hadialqattan/pycln
-    rev: v2.1.5 # Possible releases: https://github.com/hadialqattan/pycln/releases
+    rev: v2.2.2 # Possible releases: https://github.com/hadialqattan/pycln/releases
     hooks:
       - id: pycln
         args: [--config=pyproject.toml]
