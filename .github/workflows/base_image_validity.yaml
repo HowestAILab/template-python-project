@@ -15,12 +15,12 @@ jobs:
         run: |
           ls -la .devcontainer
       - name: Set environment variables
-          run: |
-            export DEFAULT_PYTHON_VERSION=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini)
-            export CUDA=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini)
-            export CUDNN=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini)
-            export GPU_AVAILABLE=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini)
-            export UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)
+        run: |
+          export DEFAULT_PYTHON_VERSION=$(awk -F "=" '/default_python_version/ {print $2}' .devcontainer/config.ini)
+          export CUDA=$(awk -F "=" '/default_cuda/ {print $2}' .devcontainer/config.ini)
+          export CUDNN=$(awk -F "=" '/default_cudnn/ {print $2}' .devcontainer/config.ini)
+          export GPU_AVAILABLE=$(awk -F "=" '/default_gpu_available/ {print $2}' .devcontainer/config.ini)
+          export UBUNTU_VERSION=$(awk -F "=" '/default_ubuntu_version/ {print $2}' .devcontainer/config.ini)
       - name: Check Docker Image
         run: |
           if docker inspect nvidia/cuda:${{ env.CUDA }}-${{ env.CUDNN }}-devel-ubuntu${{ env.UBUNTU_VERSION }} &> /dev/null; then
