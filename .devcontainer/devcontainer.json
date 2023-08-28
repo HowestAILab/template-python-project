@@ -1,9 +1,12 @@
 {
   "build": {
     "args": {
-      "PYTHON_VERSION": "3.10.11"
+      "CUDA": "11.6.2",
+      "CUDNN": "cudnn8",
+      "PYTHON_VERSION": "3.10.11",
+      "UBUNTU_VERSION": "20.04"
     },
-    "dockerfile": "Dockerfile"
+    "dockerfile": "DockerfileGPU"
   },
   "extensions": [
     "adpyke.codesnap",
@@ -52,16 +55,18 @@
     "tonybaloney.vscode-pets",
     "VisualStudioExptTeam.intellicode-api-usage-examples",
     "VisualStudioExptTeam.vscodeintellicode",
+    "bungcip.better-toml",
     "wix.vscode-import-cost",
     "yzane.markdown-pdf"
   ],
   "features": {
-    "azure-cli": "latest",
-    "github-cli": "latest"
+    "azure-cli": "latest"
   },
   "name": "template-python-project",
-  "postStartCommand": "poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install",
+  "postStartCommand": "poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install && bash .devcontainer/utils/create_links.bash",
   "runArgs": [
+    "--gpus",
+    "all",
     "--name",
     "template-python-project_devcontainer"
   ]

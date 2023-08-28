@@ -72,7 +72,7 @@ echo "{
         \"args\": {
             \"PYTHON_VERSION\": \"${python_version}\",
             \"CUDA\":\"${cuda_version}\",
-            \"CUDNN\":\"${cuddn_version}\"
+            \"CUDNN\":\"${cuddn_version}\",
             \"UBUNTU_VERSION\":\"${ubuntu_version}\"
         }
     },
@@ -123,12 +123,12 @@ echo "{
         \"tonybaloney.vscode-pets\",
         \"VisualStudioExptTeam.intellicode-api-usage-examples\",
         \"VisualStudioExptTeam.vscodeintellicode\",
+        \"bungcip.better-toml\",
         \"wix.vscode-import-cost\",
         \"yzane.markdown-pdf\"
     ],
     \"features\": {
-        \"azure-cli\": \"latest\",
-        \"github-cli\": \"latest\"
+        \"azure-cli\": \"latest\"
     },
     \"runArgs\": [
         \"--gpus\",
@@ -136,12 +136,13 @@ echo "{
         \"--name\",
         \"${workspace_name}_devcontainer\"
     ],
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install\"
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install && bash .devcontainer/utils/create_links.bash\"
 }" > .devcontainer/devcontainer.json
 
-# change every mention of 3.10 to current_python_version in the dockerfileGPU
-sed -i "s/3.10/${current_python_version}/g" .devcontainer/DockerfileGPU
 
+
+# change every mention of X.XX to current_python_version in the dockerfileGPU
+sed -i "s/python[0-9]\.[0-9][0-9]/python${current_python_version}/g" .devcontainer/DockerfileGPU
 
 # else
 else
@@ -181,6 +182,7 @@ echo "{
         \"ms-toolsai.vscode-jupyter-cell-tags\",
         \"ms-toolsai.vscode-jupyter-slideshow\",
         \"ms-vsliveshare.vsliveshare\",
+        \"bungcip.better-toml\",
         \"naumovs.color-highlight\",
         \"njpwerner.autodocstring\",
         \"PKief.markdown-checkbox\",
@@ -204,8 +206,7 @@ echo "{
         \"yzane.markdown-pdf\"
     ],
     \"features\": {
-        \"azure-cli\": \"latest\",
-        \"github-cli\": \"latest\"
+        \"azure-cli\": \"latest\"
     },
     \"runArgs\": [
         \"--name\",

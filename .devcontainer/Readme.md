@@ -27,6 +27,12 @@ For the cudnn version you can look for a compatible version with your cuda insta
 
 If any problems occur create an issue on the repo.
 
+## Notes
+
+##### Migration to GPU container from existing Non-GPU container
+
+When you are migrating your container fully (including the .venv and poetry lock file) or you are changing the config from a NON-GPU to a GPU environment make sure to first remove the .venv and the poetry lock file
+
 ## Specific server configs
 
 | Server | Cuda   | cudnn8 |
