@@ -1,7 +1,7 @@
 <h2 align="center">Python project template</h2>
 
 <p align="center">
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/pre-commit.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/pre-commit.yaml/badge.svg"></a>
+
 <a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/version.svg"></a>
 <a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/date.svg"></a>
 <a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/language.svg"></a>
@@ -11,7 +11,6 @@
 -   [How to use](#how-to-use)
 -   [Installation](#installation)
     -   [Poetry](#poetry)
-    -   [Pre-commit](#pre-commit)
     -   [Usability](#usability)
     -   [Devcontainer](#devcontainer)
 -   [Possible errors](#possible-errors)
@@ -27,7 +26,7 @@ You don't use git as normal, there is a whole pipeline in place to have a correc
 pc
 ```
 
-this will run the pre-commit pipeline and format your code.
+this will format your code.
 You then have to make a good commit message by selecting the correct type of commit and then writing a small description of what you have done.
 
 It is high likely that code will be reformatted. this means you have to rerun the previous script but no panic, there is a shortcut for this
@@ -69,10 +68,6 @@ Here some info about the pre installed tools
 ### Poetry
 
 poetry is a venv like solution. Instead of using conda or just the main python installation this makes a reusable, modular virtual environment.
-
-### Pre-commit
-
-Install pre-commit for better file cleaning before commitpip install pre-commit
 
 ### Usability
 

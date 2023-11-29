@@ -42,7 +42,6 @@ tensorrt = "8.6.0"
 black = { extras = ["jupyter"], version = "^22.3.0" }
 commitizen = "^2.20.0"
 poethepoet = "^0.18.1"
-pre-commit = "^2.15.0"
 flake9 = "^3.8.3"
 isort = "^5.12.0"
 pytest-cov = "^2.11.1"
@@ -75,7 +74,6 @@ format = { cmd = "black .", help = "Run black formatter on the code base, change
 style = { cmd = "black --check .", help = "Run black formatter on the code base, only checks." }
 lint = { cmd = "flake8 .", help = "Run flake9 linter on the code base." }
 isort = { cmd = "isort .", help = "Run isort checker on the code base." }
-prep = { cmd = "pre-commit run --all-files", help = "Run pre commit on all files" }
 com = { cmd = "cz commit", help = "add files and commit" }
 cr = { cmd = "cz commit --retry", help = "add files and commit" }
 git = { cmd = "git add .", help = "add files and commit" }
