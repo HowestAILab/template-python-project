@@ -94,7 +94,7 @@ echo "{
         \"magicstack.MagicPython\",
         \"magson.material-dark-color-theme\",
         \"mhutchie.git-graph\",
-        \"mrmlnc.vscode-remark\",
+        \"unifiedjs.vscode-remark\",
         \"ms-python.isort\",
         \"ms-python.python\",
         \"ms-python.vscode-pylance\",
@@ -110,12 +110,10 @@ echo "{
         \"PKief.material-icon-theme\",
         \"Postman.postman-for-vscode\",
         \"quicktype.quicktype\",
-        \"RandomFractalsInc.vscode-data-preview\",
         \"ritwickdey.LiveServer\",
         \"ruiquelhas.vscode-lowercase\",
         \"Shinotatwu-DS.file-tree-generator\",
         \"sleistner.vscode-fileutils\",
-        \"sourcery.sourcery\",
         \"streetsidesoftware.code-spell-checker\",
         \"swyphcosmo.spellchecker\",
         \"TakumiI.markdowntable\",
@@ -123,7 +121,7 @@ echo "{
         \"tonybaloney.vscode-pets\",
         \"VisualStudioExptTeam.intellicode-api-usage-examples\",
         \"VisualStudioExptTeam.vscodeintellicode\",
-        \"bungcip.better-toml\",
+        \"be5invis.toml\",
         \"wix.vscode-import-cost\",
         \"yzane.markdown-pdf\"
     ],
@@ -136,7 +134,7 @@ echo "{
         \"--name\",
         \"${workspace_name}_devcontainer\"
     ],
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && poetry run pre-commit install && bash .devcontainer/utils/create_links.bash\"
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu  && bash .devcontainer/utils/create_links.bash\"
 }" > .devcontainer/devcontainer.json
 
 
@@ -172,7 +170,7 @@ echo "{
         \"magicstack.MagicPython\",
         \"magson.material-dark-color-theme\",
         \"mhutchie.git-graph\",
-        \"mrmlnc.vscode-remark\",
+        \"unifiedjs.vscode-remark\",
         \"ms-python.isort\",
         \"ms-python.python\",
         \"ms-python.vscode-pylance\",
@@ -182,19 +180,17 @@ echo "{
         \"ms-toolsai.vscode-jupyter-cell-tags\",
         \"ms-toolsai.vscode-jupyter-slideshow\",
         \"ms-vsliveshare.vsliveshare\",
-        \"bungcip.better-toml\",
+        \"be5invis.toml\",
         \"naumovs.color-highlight\",
         \"njpwerner.autodocstring\",
         \"PKief.markdown-checkbox\",
         \"PKief.material-icon-theme\",
         \"Postman.postman-for-vscode\",
         \"quicktype.quicktype\",
-        \"RandomFractalsInc.vscode-data-preview\",
         \"ritwickdey.LiveServer\",
         \"ruiquelhas.vscode-lowercase\",
         \"Shinotatwu-DS.file-tree-generator\",
         \"sleistner.vscode-fileutils\",
-        \"sourcery.sourcery\",
         \"streetsidesoftware.code-spell-checker\",
         \"swyphcosmo.spellchecker\",
         \"TakumiI.markdowntable\",
@@ -212,7 +208,7 @@ echo "{
         \"--name\",
         \"${workspace_name}_devcontainer\"
     ],
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils && poetry run pre-commit install\"
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils \"
 
 }" > .devcontainer/devcontainer.json
 fi

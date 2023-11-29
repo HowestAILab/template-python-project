@@ -12,7 +12,7 @@ show_missing = true
 exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
 
 [tool.poetry]
-name = "template-python-project"
+name = "templat-python-project"
 version = "0.1.0"
 authors = ["Jens Krijgsman <jens@krygsman.be>"]
 description = "DESCRIPTION"
@@ -24,8 +24,10 @@ python = ">=3.10,<3.11"
 
 [tool.poetry.group.gpu]
 optional = true
+
 [tool.poetry.group.cleaning]
 optional = true
+
 [tool.poetry.group.utils]
 optional = true
 
@@ -35,7 +37,6 @@ tensorflow = "2.10.0"
 tensorflow-gpu = "2.10.0"
 wandb = "^0.14.2"
 tensorrt = "8.6.0"
-
 
 [tool.poetry.group.cleaning.dependencies]
 black = { extras = ["jupyter"], version = "^22.3.0" }
@@ -65,7 +66,6 @@ tqdm = "^4.65.0"
 numpy = "1.23.5"
 httpx = "^0.23.3"
 
-
 [tool.poetry.scripts]
 poe = "poethepoet:main"
 
@@ -80,16 +80,12 @@ com = { cmd = "cz commit", help = "add files and commit" }
 cr = { cmd = "cz commit --retry", help = "add files and commit" }
 git = { cmd = "git add .", help = "add files and commit" }
 viz = { cmd = "kedro viz --host 0.0.0.0 --no-browser --autoreload", help = "run kedro viz with prespecified parameters" }
-
-
 clean = ["format", "style", "isort"]
 commit = ["clean", "git", "com"]
 cretry = ["git", "cr"]
-
 train = { cmd = "python classes/02_train.py", help = "train model" }
 preprocess = { cmd = "python classes/00_preprocess.py", help = "preprocess data" }
 predict = { cmd = "python classes/03_predict.py", help = "predict data" }
-
 
 [tool.poe.env]
 TZ = "UTC"

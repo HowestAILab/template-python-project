@@ -1,24 +1,18 @@
 {
-  "editor.tokenColorCustomizations": {
-    "comments": "",
-    "textMateRules": []
-  },
-  "files.exclude": {
-    "**/.pytest_cache/**": true,
-    "**/__pycache__/**": true,
-    ".ipython/": true,
-    ".mypy_cache/": true
-  },
-  "files.watcherExclude": {
-    "**/.git/**": true,
-    "**/.venv/**": true,
-    "**/node_modules/*/**": true,
-    "**/wandb/**": true
-  },
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.lintOnSave": true,
-  "python.linting.pylintArgs": [
-    "--rcfile=setup.cfg"
-  ]
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    },
+    "files.exclude": {
+        "**/.pytest_cache/**": true,
+        "**/__pycache__/**": true,
+        ".ipython/": true,
+        ".mypy_cache/": true
+    },
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/.venv/**": true,
+        "**/node_modules/*/**": true,
+        "**/wandb/**": true
+    }
 }
