@@ -8,6 +8,9 @@
 
 </p>
 
+##  -- IN MAINTENANCE -- Use the minimal version from the develop branch ##
+
+
 -   [How to use](#how-to-use)
 -   [Installation](#installation)
     -   [Poetry](#poetry)
