@@ -37,7 +37,7 @@ When you are migrating your container fully (including the .venv and poetry lock
 
 | Server | Cuda   | cudnn8 |
 | ------ | ------ | ------ |
-| A5000  | 11.6.0 | cudnn8 |
+| A5000  | 12.0.0 | cudnn8 |
 | Titan  | 11.4.0 | cudnn8 |
 
 > **Important!** Do not forget the .0 on the end of the cuda version. This is a reference to the [docker images of Nvidia](https://hub.docker.com/r/nvidia/cuda/tags)
