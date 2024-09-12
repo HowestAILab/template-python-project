@@ -76,6 +76,9 @@ echo "{
             \"UBUNTU_VERSION\":\"${ubuntu_version}\"
         }
     },
+    \"mounts\": [
+        \"source=\${localEnv:HOME}/.ssh/gitkey,target=/root/.ssh/gitkey,type=bind,consistency=cached\"
+    ],
     \"customizations\": {
         \"vscode\": {
     \"extensions\": [
@@ -138,7 +141,7 @@ echo "{
         \"--name\",
         \"${workspace_name}_devcontainer\"
     ],
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu  && bash .devcontainer/utils/create_links.bash\"
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils,gpu && chmod 600 /root/.ssh/gitkey && ssh-keyscan github.com >> /root/.ssh/known_hosts &&  bash .devcontainer/utils/create_links.bash\"
 }" > .devcontainer/devcontainer.json
 
 
@@ -156,6 +159,9 @@ echo "{
             \"PYTHON_VERSION\": \"${python_version}\"
         }
     },
+    \"mounts\": [
+        \"source=\${localEnv:HOME}/.ssh/gitkey,target=/root/.ssh/gitkey,type=bind,consistency=cached\"
+    ],
     \"customizations\": {
         \"vscode\": {
     \"extensions\": [
@@ -216,7 +222,7 @@ echo "{
         \"--name\",
         \"${workspace_name}_devcontainer\"
     ],
-    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && poetry install --with cleaning,utils \"
+    \"postStartCommand\": \"poetry config virtualenvs.create true && poetry config virtualenvs.in-project true && chmod 600 /root/.ssh/gitkey && ssh-keyscan github.com >> /root/.ssh/known_hosts && poetry install --with cleaning,utils \"
 
 }" > .devcontainer/devcontainer.json
 fi

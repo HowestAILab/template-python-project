@@ -15,7 +15,8 @@ RUN apt-get update && \
     silversearcher-ag \
     zsh \
     git \
-    apt-utils
+    apt-utils \
+    openssh-client
 
 # set zsh config
 ENV ROOT /root
@@ -25,6 +26,22 @@ RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.
 
 COPY .zshrc $ROOT/.zshrc
 ENV SHELL /bin/zsh
+
+# Set up SSH directory
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+
+# Copy the SSH key from the host's ~/.ssh directory
+COPY --chown=root:root ~/.ssh/gitkey /root/.ssh/gitkey
+
+# Set correct permissions for the SSH key
+RUN chmod 600 /root/.ssh/gitkey
+
+# Set the Git SSH command
+ENV GIT_SSH_COMMAND="ssh -i /root/.ssh/gitkey -o StrictHostKeyChecking=no"
+
+# add github.com to known hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
 # Poetry setup
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \

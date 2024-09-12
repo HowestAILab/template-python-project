@@ -2,19 +2,19 @@
 
 <p align="center">
 
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/version.svg"></a>
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/date.svg"></a>
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/language.svg"></a>
+`<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/version.svg">``</a>`
+`<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/date.svg">``</a>`
+`<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/language.svg">``</a>`
 
 </p>
 
--   [How to use](#how-to-use)
--   [Installation](#installation)
-    -   [Poetry](#poetry)
-    -   [Usability](#usability)
-    -   [Devcontainer](#devcontainer)
--   [Possible errors](#possible-errors)
-    -   [Docker issues](#docker-issues)
+- [How to use](#how-to-use)
+- [Installation](#installation)
+  - [Poetry](#poetry)
+  - [Usability](#usability)
+  - [Devcontainer](#devcontainer)
+- [Possible errors](#possible-errors)
+  - [Docker issues](#docker-issues)
 
 ## How to use
 
@@ -64,6 +64,18 @@ This will push your code to the repo.
 When starting the repo everything should be ready to use. (do not forget to install the devcontainer [Devcontainer readme](.devcontainer/Readme.md))
 
 Here some info about the pre installed tools
+
+### GIT
+
+Due to the container notbeing able to allways correctly take over the ssh key from the main machine there is now a symlink that copies the lokal gitkey to the container. For this solution to work your git ssh key must be placed in the folder
+
+```bash
+~/.ssh
+```
+
+The git ssh key must also be named : <span style="color:red">gitkey</span>
+
+When this is done you can use the git commands as normal, or by using the previously mentioned shortcuts.
 
 ### Poetry
 
@@ -116,8 +128,8 @@ When you are working inside WSL2 and you get the following error
 
 There are 2 things you can try to fix it
 
-1.  Install docker inside WSL2 (if you have not done this already)
-2.  Start the docker daemon inside WSL=> `sudo dockerd`
+1. Install docker inside WSL2 (if you have not done this already)
+2. Start the docker daemon inside WSL=> `sudo dockerd`
 
 #### Server - config file not found
 

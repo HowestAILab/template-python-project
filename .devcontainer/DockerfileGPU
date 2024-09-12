@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zsh \
     git \
     nano \
-    software-properties-common
+    software-properties-common \
+    openssh-client
 
 
 # set zsh config
@@ -42,6 +43,21 @@ RUN git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-~/.oh-my-zsh/custom
 
 COPY .zshrc $ROOT/.zshrc
 ENV SHELL /bin/zsh
+
+# Install Git and SSH client
+RUN apt-get update && apt-get install -y \
+    git \
+    openssh-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up SSH directory
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+
+# Set the Git SSH command
+ENV GIT_SSH_COMMAND="ssh -i /root/.ssh/gitkey -o StrictHostKeyChecking=no"
+
+# Add github.com to known hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 # Poetry setup
 ENV PYTHONFAULTHANDLER=1 \
