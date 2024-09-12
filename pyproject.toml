@@ -12,15 +12,17 @@ show_missing = true
 exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
 
 [tool.poetry]
-name = "templat-python-project"
+name = "template-python-project"
 version = "0.1.0"
 authors = ["Jens Krijgsman <jens@krygsman.be>"]
 description = "DESCRIPTION"
 readme = "README.md"
 license = "MIT"
+package-mode = false
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = "3.11.10"
+tensorrt = "^10.4.0"
 
 [tool.poetry.group.gpu]
 optional = true
@@ -33,13 +35,13 @@ optional = true
 
 [tool.poetry.group.gpu.dependencies]
 scikit-learn = "^1.2.2"
-tensorflow = "2.10.0"
-tensorflow-gpu = "2.10.0"
+tensorflow = { version = "^2.10.0", extras = ["and-cuda"] }
 wandb = "^0.14.2"
-tensorrt = "8.6.0"
+torch = "^1.10.0"
+tensorrt = "^10.0.0"
 
 [tool.poetry.group.cleaning.dependencies]
-black = { extras = ["jupyter"], version = "^22.3.0" }
+black = {  version = "^22.3.0", extras = ["jupyter"] }
 commitizen = "^2.20.0"
 poethepoet = "^0.18.1"
 flake9 = "^3.8.3"
@@ -62,8 +64,12 @@ jupyter = "^1.0.0"
 snakeviz = "^2.1.0"
 Cython = "^0.29.24"
 tqdm = "^4.65.0"
-numpy = "1.23.5"
+numpy = "^1.23.5"
 httpx = "^0.23.3"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
 
 [tool.poetry.scripts]
 poe = "poethepoet:main"

@@ -76,6 +76,8 @@ echo "{
             \"UBUNTU_VERSION\":\"${ubuntu_version}\"
         }
     },
+    \"customizations\": {
+        \"vscode\": {
     \"extensions\": [
         \"adpyke.codesnap\",
         \"analytic-signal.preview-mp4\",
@@ -125,6 +127,8 @@ echo "{
         \"wix.vscode-import-cost\",
         \"yzane.markdown-pdf\"
     ],
+    },
+    },
     \"features\": {
         \"azure-cli\": \"latest\"
     },
@@ -152,6 +156,8 @@ echo "{
             \"PYTHON_VERSION\": \"${python_version}\"
         }
     },
+    \"customizations\": {
+        \"vscode\": {
     \"extensions\": [
         \"adpyke.codesnap\",
         \"analytic-signal.preview-mp4\",
@@ -201,6 +207,8 @@ echo "{
         \"wix.vscode-import-cost\",
         \"yzane.markdown-pdf\"
     ],
+    },
+    },
     \"features\": {
         \"azure-cli\": \"latest\"
     },
