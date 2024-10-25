@@ -7,10 +7,8 @@ This is an up-to-date **Devcontainer** template for developing **Python** projec
 1. Clone this repository to your server.
 2. Press `Ctrl+Shift+P` to open the command palette.
 3. Search for `Dev Containers: Rebuild and Reopen in Container`.
-4. Follow the instructions in the terminal to install TensorFlow and/or PyTorch (see Fig.1).
+4. Follow the instructions in the terminal to install TensorFlow or PyTorch.
 5. You are now ready to start developing with GPU support! 😀
-
-![Figure 1: Post container creation setup](.github/terminal_setup.png)
 
 ## Devcontainer info
 
@@ -29,12 +27,13 @@ This is an up-to-date **Devcontainer** template for developing **Python** projec
 | Git         | Latest              | [ghcr.io/devcontainers/features/git:1](https://github.com/devcontainers/features/tree/main/src/git)                 |
 | GitHub CLI  | Latest              | [ghcr.io/devcontainers/features/github-cli:1](https://github.com/devcontainers/features/tree/main/src/github-cli)   |
 
-### Libraries (optional)
+### Libraries
 
-| Name       | Version |
-| :--------- | :------ |
-| TensorFlow | 2.17.0  |
-| PyTorch    | 2.5.0   |
+| Name       | Version | Description                                         |
+| :--------- | :------ | :-------------------------------------------------- |
+| TensorFlow | 2.17.0  | AI development framework                            |
+| PyTorch    | 2.5.0   | AI development framework                            |
+| Poetry     | Latest  | Venv-like solution with great dependency management |
 
 ### Extensions
 
@@ -71,7 +70,7 @@ The most recent common Python version is **3.12**.
 
 ## GPU accelerated containers
 
-The **hosts NVIDIA driver** gets passed to the container using the **[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)** (see Fig.2).
+The **hosts NVIDIA driver** gets passed to the container using the **[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)**.
 You can validate your Container Toolkit installation by checking the **Docker daemon** configuration file on your server: `/etc/docker/daemon.json`.
 To spin up a GPU-accelerated container, append the `--gpus=all` and `--runtime=nvidia` arguments to your `docker run` command.
 Luckily, these arguments are already preconfigured in `devcontainer.json`.
@@ -79,4 +78,4 @@ Luckily, these arguments are already preconfigured in `devcontainer.json`.
 The **NVIDIA driver** on the A5000 server has version **12.0**.<br/>
 A GPU-enabled container requires the **NVIDIA CUDA Toolkit** (contains cuFFT, cuBLAS, etc.) and **cuDNN** in the container itself.<br/>
 
-![Figure 2: CUDA stack](.github/cuda_stack.png)
+![CUDA stack](.github/cuda_stack.png)
