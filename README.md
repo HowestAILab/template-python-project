@@ -1,145 +1,81 @@
-<h2 align="center">Python project template</h2>
+# Devcontainer Template
 
-<p align="center">
+This is an up-to-date **Devcontainer** template for developing **Python** projects on a **GPU** enabled machine, specifically with **TensorFlow** and **PyTorch** support.
 
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/version.svg"></a>
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/date.svg"></a>
-<a href="https://github.com/SmartTechAIResearch/template-python-project/actions/workflows/version.yaml"><img alt="Actions Status" src="https://github.com/SmartTechAIResearch/template-python-project/blob/gh-pages/language.svg"></a>
+## Instructions
 
-</p>
+1. Clone this repository to your server.
+2. Press `Ctrl+Shift+P` to open the command palette.
+3. Search for `Dev Containers: Rebuild and Reopen in Container`.
+4. Follow the instructions in the terminal to install TensorFlow or PyTorch.
+5. You are now ready to start developing with GPU support! 😀
 
-- [How to use](#how-to-use)
-- [Installation](#installation)
-  - [Poetry](#poetry)
-  - [Usability](#usability)
-  - [Devcontainer](#devcontainer)
-- [Possible errors](#possible-errors)
-  - [Docker issues](#docker-issues)
+## Devcontainer info
 
-## How to use
+### Base OS
 
-Some key things to know when developing in the devcontainer
+| Name   | Version | Image                                                                                                                  |
+| :----- | :------ | :--------------------------------------------------------------------------------------------------------------------- |
+| Ubuntu | 24.04   | [mcr.microsoft.com/devcontainers/base:ubuntu-24.04](https://github.com/devcontainers/images/tree/main/src/base-ubuntu) |
 
-You don't use git as normal, there is a whole pipeline in place to have a correct way of formatting your code. Use this in the terminal!
+### Features
 
-```bash
-pc
-```
+| Name        | Version             | Image                                                                                                               |
+| :---------- | :------------------ | :------------------------------------------------------------------------------------------------------------------ |
+| NVIDIA CUDA | CUDA 12.6 & cuDNN 9 | [ghcr.io/devcontainers/features/nvidia-cuda:1](https://github.com/devcontainers/features/tree/main/src/nvidia-cuda) |
+| Python      | 3.12                | [ghcr.io/devcontainers/features/python:1](https://github.com/devcontainers/features/tree/main/src/python)           |
+| Git         | Latest              | [ghcr.io/devcontainers/features/git:1](https://github.com/devcontainers/features/tree/main/src/git)                 |
+| GitHub CLI  | Latest              | [ghcr.io/devcontainers/features/github-cli:1](https://github.com/devcontainers/features/tree/main/src/github-cli)   |
 
-this will format your code.
-You then have to make a good commit message by selecting the correct type of commit and then writing a small description of what you have done.
+### Libraries
 
-It is high likely that code will be reformatted. this means you have to rerun the previous script but no panic, there is a shortcut for this
+| Name       | Version | Description                                         |
+| :--------- | :------ | :-------------------------------------------------- |
+| TensorFlow | 2.17.0  | AI development framework                            |
+| PyTorch    | 2.5.0   | AI development framework                            |
+| Poetry     | Latest  | Venv-like solution with great dependency management |
 
-```bash
-pcr
-```
+### Extensions
 
-in full:
+| Name     | Description             | ID                        |
+| :------- | :---------------------- | :------------------------ |
+| Python   | Python language support | ms-python.python          |
+| Pylint   | Static code analyser    | ms-python.vscode-pylint   |
+| Black    | Code formatter          | ms-python.black-formatter |
+| Jupyter  | Jupyter extension pack  | ms-toolsai.jupyter        |
+| Prettier | Code formatter          | esbenp.prettier-vscode    |
 
-```bash
-poetry commit retry
-```
+## Common errors
 
-The shortcut is created inside the docker container .zshrc file, normally you should never have to use the full command. Other shortcuts can be found inside the pyproject.toml file.
+If the shell scripts fail to run or complain about `\r` characters, check if the `End of Line` formatting of the scripts is set to `LF`.
 
-Do this until you have a clean commit.
+## Versioning
 
-when you are done with your work you can push it to the repo with the following command
+| CUDA Toolkit | Linux Driver Version | Windows Driver Version |
+| :----------- | :------------------- | :--------------------- |
+| CUDA 12.x    | >= 525.60.13         | >= 527.41              |
+| CUDA 11.x    | >= 450.80.02         | >= 452.39              |
 
-```bash
-gp
-```
+- The CUDA Toolkits have **minor version compatibility** with the drivers.<br/>
+  _This means that CUDA Toolkit 12.6 should work with a driver that's designed for CUDA 12.0 because they have the same major version._
+- The CUDA Toolkits are **backwards compatible** with the drivers.<br/>
+  _This means that CUDA Toolkit 11.8 will still work with a newer driver that's designed for CUDA 12.x versions._
 
-in full:
+| Latest version    | Python version | CUDA |
+| :---------------- | :------------- | :--- |
+| TensorFlow 2.17.0 | 3.9-3.12       | 12.3 |
+| PyTorch 2.5.0     | 3.9-3.12       | 12.4 |
 
-```bash
-git push
-```
+The most recent common Python version is **3.12**.
 
-This will push your code to the repo.
+## GPU accelerated containers
 
-## Installation
+The **hosts NVIDIA driver** gets passed to the container using the **[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)**.
+You can validate your Container Toolkit installation by checking the **Docker daemon** configuration file on your server: `/etc/docker/daemon.json`.
+To spin up a GPU-accelerated container, append the `--gpus=all` and `--runtime=nvidia` arguments to your `docker run` command.
+Luckily, these arguments are already preconfigured in `devcontainer.json`.
 
-When starting the repo everything should be ready to use. (do not forget to install the devcontainer [Devcontainer readme](.devcontainer/Readme.md))
+The **NVIDIA driver** on the A5000 server has version **12.0**.<br/>
+A GPU-enabled container requires the **NVIDIA CUDA Toolkit** (contains cuFFT, cuBLAS, etc.) and **cuDNN** in the container itself.<br/>
 
-Here some info about the pre installed tools
-
-### GIT
-
-Due to the container notbeing able to allways correctly take over the ssh key from the main machine there is now a symlink that copies the lokal gitkey to the container. For this solution to work your git ssh key must be placed in the folder
-
-```bash
-~/.ssh
-```
-
-The git ssh key must also be named : <span style="color:red">gitkey</span>
-
-When this is done you can use the git commands as normal, or by using the previously mentioned shortcuts.
-
-### Poetry
-
-poetry is a venv like solution. Instead of using conda or just the main python installation this makes a reusable, modular virtual environment.
-
-### Usability
-
-There are some shortcuts when in the poetry virtual environment `poetry shell` to make certain commands faster execute the following to see them
-
-```bash
-poe
-```
-
-Some other shortcuts that are already in the terminal config file
-
-```bash
-pos="poetry shell"
-ga="git add ."
-gp="git push"
-pc="poe commit"
-pcr="poe cretry"
-```
-
-### Devcontainer
-
-You can see a folder named devcontainer. This is a [Docker](https://code.visualstudio.com/docs/devcontainers/containers) container made for developing inside.
-By using this, it should be easier and faster to start developing, on a server, locally or just anywhere.
-
-To get started install the repo in any folder and open it in VS-code
-
-For more info about how to start look in: [Devcontainer readme](.devcontainer/Readme.md)
-
-If you have followed the steps and **ONLY THEN** you can go to the next step
-
-Next when you are inside Vs-code inside the repo press `CTRL + SHIFT + P` and select the following option
-
-`Dev containers: Rebuild and reopen in container`
-
-this will build the container and try to open them.
-
-## Possible errors
-
-### Docker issues
-
-#### WSL2 - docker not running
-
-When you are working inside WSL2 and you get the following error
-
-`Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
-
-There are 2 things you can try to fix it
-
-1. Install docker inside WSL2 (if you have not done this already)
-2. Start the docker daemon inside WSL=> `sudo dockerd`
-
-#### Server - config file not found
-
-When you are working on the server and you don't have acces to the docker config located at the user folder
-
-    WARNING: Error loading config file: /home/user/.docker/config.json ....
-
-This can be fixed by running the following commands (before rebuilding the devcontainer)
-
-```bash
-sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-sudo chmod g+rwx "/home/$USER/.docker" -R
-```
+![CUDA stack](.github/cuda_stack.png)
