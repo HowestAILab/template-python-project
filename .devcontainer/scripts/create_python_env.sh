@@ -3,6 +3,7 @@
 # Function to create environment for PyTorch
 poetry_add_pytorch() {
   echo "⚙️  Creating PyTorch environment..."
+  poetry remove tensorflow >> .devcontainer/logs.log
   poetry source add --priority=explicit pytorch-cu124 https://download.pytorch.org/whl/cu124 >> .devcontainer/logs.log
   poetry add --source pytorch-cu124 torch==2.5.0+cu124 torchvision==0.20.0+cu124 torchaudio==2.5.0+cu124 >> .devcontainer/logs.log
   echo "✅ PyTorch environment setup complete."
@@ -11,6 +12,7 @@ poetry_add_pytorch() {
 # Function to create environment for TensorFlow
 poetry_add_tensorflow() {
   echo "⚙️  Creating TensorFlow environment..."
+  poetry remove torch torchvision torchaudio >> .devcontainer/logs.log
   poetry add tensorflow[and-cuda]==2.17.0 >> .devcontainer/logs.log
   echo "✅ TensorFlow environment setup complete."
 }

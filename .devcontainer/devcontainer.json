@@ -45,12 +45,13 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "natqe.reload",
         "ms-python.python",
         "ms-python.vscode-pylint",
         "ms-python.black-formatter",
         "ms-toolsai.jupyter",
         "esbenp.prettier-vscode",
-        "natqe.reload"
+        "kurozero.vscode-commit-reminder"
       ]
     }
   }
