@@ -4,11 +4,13 @@ This is an up-to-date **Devcontainer** template for developing **Python** projec
 
 ## Instructions
 
-1. Clone this repository to your server.
-2. Press `Ctrl+Shift+P` to open the command palette.
-3. Search for `Dev Containers: Rebuild and Reopen in Container`.
-4. Follow the instructions in the terminal to install TensorFlow or PyTorch.
-5. You are now ready to start developing with GPU support! 😀
+1. Create a new repository using this GitHub template.
+2. Clone the repository and open it using VSCode.
+3. Run `python .devcontainer/change_gpu_config.py` to select your GPU mode.
+4. Press `Ctrl+Shift+P` to open the command palette.
+5. Search for `Dev Containers: Rebuild and Reopen in Container`.
+6. Follow the instructions in the terminal to install TensorFlow or PyTorch.
+7. You are now ready to start developing! 😀
 
 ## Devcontainer info
 
@@ -20,20 +22,20 @@ This is an up-to-date **Devcontainer** template for developing **Python** projec
 
 ### Features
 
-| Name        | Version             | Image                                                                                                               |
-| :---------- | :------------------ | :------------------------------------------------------------------------------------------------------------------ |
-| NVIDIA CUDA | CUDA 12.6 & cuDNN 9 | [ghcr.io/devcontainers/features/nvidia-cuda:1](https://github.com/devcontainers/features/tree/main/src/nvidia-cuda) |
-| Python      | 3.12                | [ghcr.io/devcontainers/features/python:1](https://github.com/devcontainers/features/tree/main/src/python)           |
-| Git         | Latest              | [ghcr.io/devcontainers/features/git:1](https://github.com/devcontainers/features/tree/main/src/git)                 |
-| GitHub CLI  | Latest              | [ghcr.io/devcontainers/features/github-cli:1](https://github.com/devcontainers/features/tree/main/src/github-cli)   |
+| Name        | Version             | Image                                                                                                               | Optional |
+| :---------- | :------------------ | :------------------------------------------------------------------------------------------------------------------ | -------- |
+| NVIDIA CUDA | CUDA 12.6 & cuDNN 9 | [ghcr.io/devcontainers/features/nvidia-cuda:1](https://github.com/devcontainers/features/tree/main/src/nvidia-cuda) | Yes      |
+| Python      | 3.12                | [ghcr.io/devcontainers/features/python:1](https://github.com/devcontainers/features/tree/main/src/python)           | No       |
+| Git         | Latest              | [ghcr.io/devcontainers/features/git:1](https://github.com/devcontainers/features/tree/main/src/git)                 | No       |
+| GitHub CLI  | Latest              | [ghcr.io/devcontainers/features/github-cli:1](https://github.com/devcontainers/features/tree/main/src/github-cli)   | No       |
 
 ### Libraries
 
-| Name       | Version | Description                                         |
-| :--------- | :------ | :-------------------------------------------------- |
-| TensorFlow | 2.17.0  | AI development framework                            |
-| PyTorch    | 2.5.0   | AI development framework                            |
-| Poetry     | Latest  | Venv-like solution with great dependency management |
+| Name       | Version | Description                                         | Optional |
+| :--------- | :------ | :-------------------------------------------------- | -------- |
+| TensorFlow | 2.17.0  | AI development framework                            | Yes      |
+| PyTorch    | 2.5.0   | AI development framework                            | Yes      |
+| Poetry     | Latest  | Venv-like solution with great dependency management | No       |
 
 ### Extensions
 
@@ -47,7 +49,9 @@ This is an up-to-date **Devcontainer** template for developing **Python** projec
 
 ## Common errors
 
-If the shell scripts fail to run or complain about `\r` characters, check if the `End of Line` formatting of the scripts is set to `LF`.
+| **❌ Error**                                                | **✅ Solution**                                                                |
+| :---------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| Shell scripts fail to run or complain about `\r` characters | Check if the `End of Line` formatting of the scripts is set to `LF` in VSCode. |
 
 ## Versioning
 
