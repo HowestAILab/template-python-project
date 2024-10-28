@@ -1,6 +1,7 @@
 # Devcontainer Template
 
-This is an up-to-date **Devcontainer** template for developing **Python** projects on a **GPU** enabled machine, specifically with **TensorFlow** and **PyTorch** support.
+This is an up-to-date **Devcontainer** template for developing **Python** projects (with Git and Poetry).<br>
+It has optional support for **TensorFlow** and **PyTorch** on **GPU** enabled machines.
 
 ## Instructions
 
